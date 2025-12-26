@@ -7,8 +7,21 @@ from app.core.config import settings
 
 
 # Create async engine
+database_url = settings.DATABASE_URL
+import os
+print(f"DEBUG: All Env Keys: {list(os.environ.keys())}")
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
+
+try:
+    # Basic masking for logs
+    safe_url = database_url.split("@")[-1] if "@" in database_url else "UNKNOWN"
+    print(f"DEBUG: Attempting to connect to database at: {safe_url}")
+except Exception:
+    print("DEBUG: Could not parse database URL for logging")
+
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    database_url,
     echo=settings.DEBUG,
     poolclass=NullPool if settings.ENVIRONMENT == "testing" else None,
     pool_size=settings.DATABASE_POOL_SIZE if settings.ENVIRONMENT != "testing" else None,
