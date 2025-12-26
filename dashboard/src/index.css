@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --gradient-accent: linear-gradient(135deg, #f472b6 0%, #c084fc 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+body {
+  @apply bg-gray-950 text-gray-100 antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300;
+}
+
+.card-hover:hover {
+  @apply -translate-y-1 shadow-xl shadow-primary-500/10;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  background: var(--gradient-primary);
+}
+
+.btn-primary:hover {
+  @apply opacity-90 shadow-lg shadow-primary-500/25;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 rounded-lg font-medium bg-gray-800 hover:bg-gray-700 transition-all duration-200;
+}
+
+/* Input styles */
+.input {
+  @apply w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all duration-200;
+}
+
+/* Status badges */
+.status-pending {
+  @apply bg-amber-500/20 text-amber-400 border border-amber-500/30;
+}
+
+.status-verified {
+  @apply bg-blue-500/20 text-blue-400 border border-blue-500/30;
+}
+
+.status-confirmed {
+  @apply bg-emerald-500/20 text-emerald-400 border border-emerald-500/30;
+}
+
+.status-declined {
+  @apply bg-red-500/20 text-red-400 border border-red-500/30;
+}
+
+.status-completed {
+  @apply bg-purple-500/20 text-purple-400 border border-purple-500/30;
+}
+
+.status-cancelled {
+  @apply bg-gray-500/20 text-gray-400 border border-gray-500/30;
+}
+
