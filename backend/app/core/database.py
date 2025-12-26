@@ -10,8 +10,11 @@ from app.core.config import settings
 database_url = settings.DATABASE_URL
 import os
 print(f"DEBUG: All Env Keys: {list(os.environ.keys())}")
-if database_url and database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
+if database_url:
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
+    elif database_url.startswith("postgresql://"):
+        database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
 
 try:
     # Basic masking for logs
