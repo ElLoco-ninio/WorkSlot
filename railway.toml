@@ -18,7 +18,7 @@ restartPolicyMaxRetries = 10
 name = "frontend"
 root = "frontend"
 buildCommand = "npm install && npm run build"
-startCommand = "npx serve -s dist -l 5173" 
+startCommand = "npx serve -s dist -l $PORT" 
 # Note: 'preview' is for verifying build. ideally serv with static server. 
 # Vite preview is fine for MVP. 
 healthcheckPath = "/"
