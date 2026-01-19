@@ -20,9 +20,19 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="WorkSlot V1", lifespan=lifespan)
 
 # CORS
+origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+
+import os
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    origins.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"], 
+    allow_origins=origins, 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
