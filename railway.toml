@@ -8,7 +8,7 @@ startCommand = "echo 'Specify service in Railway UI'"
 name = "WorkSlot"
 root = "backend"
 buildCommand = "pip install -r requirements.txt"
-startCommand = "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+startCommand = "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
 healthcheckPath = "/api/public/provider/status" # Or just /
 healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
@@ -18,7 +18,7 @@ restartPolicyMaxRetries = 10
 name = "zealous-surprise"
 root = "frontend"
 buildCommand = "npm install && npm run build"
-startCommand = "npx -y serve -s dist -l $PORT" 
+startCommand = "npx -y serve -s dist -l $PORT --single" 
 # Note: 'preview' is for verifying build. ideally serv with static server. 
 # Vite preview is fine for MVP. 
 healthcheckPath = "/"
