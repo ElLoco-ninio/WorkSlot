@@ -16,6 +16,7 @@ restartPolicyMaxRetries = 10
 [[services]]
 name = "zealous-surprise"
 root = "frontend"
-# No build/start command needed, Dockerfile handles it
+# Force start command as UI override is failing and Dockerfile detection is flaky
+startCommand = "npx -y serve -s dist -l $PORT --single"
 healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
